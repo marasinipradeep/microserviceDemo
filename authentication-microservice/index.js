@@ -3,9 +3,6 @@ require('dotenv').config();
 const axios = require('axios');
 const qs = require('qs');
 
-console.log(`the app id is ${process.env.APP_ID}`)
-console.log(`the token is ${process.env.TOKEN_ENDPOINT}`)
-
 const postData = {
   client_id: process.env.APP_ID,
   scope: process.env.MS_GRAPH_SCOPE,
@@ -23,7 +20,16 @@ axios
   .then(response => {
       
     console.log(response.data);
+    signIn(response.data);
+
+
   })
   .catch(error => {
     console.log(error);
   });
+
+  async function signIn(token){
+
+    const signedInInfo = await axios.get('https://') 
+
+  }
