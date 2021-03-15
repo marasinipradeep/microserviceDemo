@@ -20,16 +20,9 @@ axios
   .then(response => {
       
     console.log(response.data);
-    signIn(response.data);
 
 
   })
   .catch(error => {
     console.log(error);
   });
-
-  async function signIn(token){
-
-    const signedInInfo = await axios.get('https://') 
-
-  }
