@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var flash = require('connect-flash');
-require('dotenv').config();
+
 
 var passport = require('passport');
 var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
@@ -95,7 +95,7 @@ passport.use(new OIDCStrategy(
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
-var calendarRouter = require('./routes/calendar');
+var inboxRouter = require('./routes/inbox');
 var graph = require('./graph');
 
 var app = express();
@@ -167,7 +167,7 @@ app.use(function(req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/calendar', calendarRouter);
+app.use('/inbox', inboxRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

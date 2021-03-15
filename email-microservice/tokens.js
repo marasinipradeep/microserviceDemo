@@ -8,6 +8,7 @@ module.exports = {
       // Get the stored token
       var storedToken = req.user.oauthToken;
       console.log(`inside get access token ${storedToken}`);
+      console.log(storedToken)
 
       if (storedToken) {
         if (storedToken.expired()) {

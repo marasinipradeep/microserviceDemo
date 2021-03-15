@@ -23,8 +23,19 @@ module.exports = {
       .get();
 
     return events;
-  }
+  },
   // </GetEventsSnippet>
+
+  //get mail api
+  getMail: async function (accessToken) {
+    const client = getAuthenticatedClient(accessToken);
+
+    const mail = await client
+      .api('/me/mailFolders/inbox')
+      .orderby('createdDateTime DESC')
+      .get();
+    return mail;
+  }
 };
 
 function getAuthenticatedClient(accessToken) {
@@ -37,8 +48,5 @@ function getAuthenticatedClient(accessToken) {
     }
   });
 
-
   return client;
 }
-
-

@@ -9,7 +9,6 @@ var router = express.Router();
 router.get('/signin',
   function  (req, res, next) {
     console.log(`inside authentication`)
-    console.log(req)
     passport.authenticate('azuread-openidconnect',
       {
         response: res,

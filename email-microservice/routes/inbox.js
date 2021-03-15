@@ -8,14 +8,14 @@ var graph = require('../graph.js');
 
 /* GET /calendar */
 // <GetRouteSnippet>
-router.get('/',
-  async function(req, res) {
+router.get('/',async function(req, res) {
+  console.log(`inside ibox line 1`);
     if (!req.isAuthenticated()) {
       // Redirect unauthenticated requests to home page
       res.redirect('/')
     } else {
       let params = {
-        active: { calendar: true }
+        active: { inbox: true }
       };
 
       // Get the access token
@@ -32,7 +32,7 @@ router.get('/',
       if (accessToken && accessToken.length > 0) {
         try {
           // Get the events
-          var events = await graph.getEvents(accessToken);
+          var events = await graph.getMail(accessToken);
           params.events = events.value;
         } catch (err) {
           req.flash('error_msg', {
@@ -43,7 +43,7 @@ router.get('/',
       } else {
         req.flash('error_msg', 'Could not get an access token');
       }
-      res.render('calendar', params);
+      res.render('inbox', params);
     }
   }
 );
