@@ -1,0 +1,32 @@
+version: "3"
+services:
+ authentication-microservice:
+  build:"./authentication-microservice"
+  depends_on: 
+   - authentication-microservice-db
+  volumes:
+    - "./authentication-microservice:/usr/src/app"
+  
+ authentication-microservice-db:
+   image:'mongo'
+   container_name: "my-mongo-container" #give your container a name
+   environment: 
+     - MONGO_INITDB_DATABASE=your-database-name #database name you want to make
+     - MONGO_INITDB_ROOT_USERNAME=my-container-root-username #set your container root username
+     - MONGO_INITDB_ROOT_PASSWORD=secret # set your container root password
+
+ calender-microservice:
+  build:"./calender-microservice"
+  depends_on: 
+   -calender-microservice-db
+  volumes:
+    - "./calender-microservice:/usr/src/app"   
+
+
+ calender-microservice-db:
+   image:'mongo'
+   container_name: "my-mongo-container" #give your container a name
+   environment: 
+     - MONGO_INITDB_DATABASE=your-database-name #database name you want to make
+     - MONGO_INITDB_ROOT_USERNAME=my-container-root-username #set your container root username
+     - MONGO_INITDB_ROOT_PASSWORD=secret # set your container root password   

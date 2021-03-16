@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calender-microservice
+spec:
+  selector:
+    matchLabels:
+      app: calender-microservice
+  template:
+    metadata:
+      labels:
+        app: calender-microservice
+    spec:
+      containers:
+      - name: calender-microservice
+        image: calender-microservice
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
